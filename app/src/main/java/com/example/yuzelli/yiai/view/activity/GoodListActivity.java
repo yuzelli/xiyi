@@ -56,6 +56,7 @@ public class GoodListActivity extends BaseActivity {
 
     List<Integer> numberList;
     List<Boolean> flagList;
+
     @Override
     protected int layoutInit() {
         return R.layout.activity_good_list;
@@ -67,7 +68,7 @@ public class GoodListActivity extends BaseActivity {
         Intent intent = getIntent();
         handler = new GoodListHandler();
         business = (Business) intent.getSerializableExtra("business");
-        userInfo = (UserInfo) SharePreferencesUtil.readObject(this,ConstantUtils.USER_LOGIN_INFO);
+        userInfo = (UserInfo) SharePreferencesUtil.readObject(this, ConstantUtils.USER_LOGIN_INFO);
         this.findViewById(R.id.img_back).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,34 +86,37 @@ public class GoodListActivity extends BaseActivity {
         tv_count.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (order==null){
+                if (order == null) {
                     showToast("订单未创建");
                     return;
                 }
                 boolean flag = true;
-                for (boolean b:flagList){
-                    if (b==false){
+                for (boolean b : flagList) {
+                    if (b == false) {
                         flag = b;
                     }
                 }
-                if (flag){
+                if (flag) {
                     showToast("购物车中没有商品！");
                     return;
                 }
                 int allPice = 0;
-                for (int i = 0 ; i < goodLists.size(); i++){
-                    if (flagList.get(i)==false){
+                for (int i = 0; i < goodLists.size(); i++) {
+                    if (flagList.get(i) == false) {
                         int number = numberList.get(i);
-                        allPice=allPice+number *goodLists.get(i).getG_price();
+                        allPice = allPice + number * goodLists.get(i).getG_price();
                     }
                 }
-                SettlementActivity.actionStart(context,order,allPice);
+                SettlementActivity.actionStart(context, order, allPice);
                 finish();
 
             }
         });
     }
-    /**获取商品列表*/
+
+    /**
+     * 获取商品列表
+     */
     private void doGetGoodsList() {
         BaiduLoading.onBeiginDialog(this);
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
@@ -151,42 +155,52 @@ public class GoodListActivity extends BaseActivity {
                 helper.setText(R.id.tv_name, item.getG_name());
                 helper.setText(R.id.tv_price, "单价：" + item.getG_price());
                 final EditText shop_car_item_editNum_spec = helper.getView(R.id.shop_car_item_editNum_spec);
-                ImageView shop_car_item_min_spec = helper.getView(R.id.shop_car_item_min_spec);
-                shop_car_item_min_spec.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (numberList.get(0)==0){return;}
-                         numberList.set(position,numberList.get(position)-1);
-                        shop_car_item_editNum_spec.setText(numberList.get(position)+"");
-                    }
-                });
+                final ImageView shop_car_item_min_spec = helper.getView(R.id.shop_car_item_min_spec);
 
-                ImageView shop_car_item_sum_spec = helper.getView(R.id.shop_car_item_sum_spec);
-                shop_car_item_sum_spec.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        numberList.set(position,numberList.get(position)+1);
-                        shop_car_item_editNum_spec.setText(numberList.get(position)+"");
-                    }
-                });
-                shop_car_item_editNum_spec.setText(numberList.get(position)+"");
+
+                final ImageView shop_car_item_sum_spec = helper.getView(R.id.shop_car_item_sum_spec);
+
+                shop_car_item_editNum_spec.setText(numberList.get(position) + "");
                 TextView tv_add = helper.getView(R.id.tv_add);
-               if (flagList.get(position).booleanValue()){
-                   tv_add.setText("加入购物车");
-               }else {
-                   tv_add.setText("已加入");
-               }
+                if (flagList.get(position).booleanValue()) {
+                    shop_car_item_min_spec.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (numberList.get(position) <= 0) {
+                                numberList.set(position, 0);
+                                return;
+                            }
+                            numberList.set(position, numberList.get(position) - 1);
+                            shop_car_item_editNum_spec.setText(numberList.get(position) + "");
+                        }
+                    });
+                    tv_add.setText("加入购物车");
+                    shop_car_item_sum_spec.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            numberList.set(position, numberList.get(position) + 1);
+                            shop_car_item_editNum_spec.setText(numberList.get(position) + "");
+                        }
+                    });
+                } else {
+                    tv_add.setText("已加入");
+                    shop_car_item_sum_spec.setOnClickListener(null);
+                    shop_car_item_min_spec.setOnClickListener(null);
+                }
                 tv_add.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        if (order!=null){
-                            if (flagList.get(position)&&numberList.get(position)!=0) {
+                        if (order != null) {
+
+                            if (flagList.get(position) && numberList.get(position) != 0) {
+
                                 doAddOrderGood(position, numberList.get(position));
-                            }else {
-                                showToast("已加入");
+                            } else {
+                                if (numberList.get(position) != 0){
+                                showToast("已加入");}
                             }
-                        }else {
-                            showToast("订单创建未创建,请再次添加");
+                        } else {
+
                             doCreateOrder();
                         }
                     }
@@ -196,16 +210,18 @@ public class GoodListActivity extends BaseActivity {
         lv_goods.setAdapter(adapter);
     }
 
-    /**加入购物车*/
+    /**
+     * 加入购物车
+     */
     private void doAddOrderGood(final int postion, int number) {
         BaiduLoading.onBeiginDialog(this);
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         StringBuffer buffer = new StringBuffer(ConstantUtils.USER_ADDRESS).append(ConstantUtils.ORDERGOODS_REGISTER);
         Map<String, String> map = new HashMap<>();
         map.put("type", "addOrderGoods");
-        map.put("order_id", order.getOrder_id()+"");
-        map.put("good_id", goodLists.get(postion).getGood_id()+"");
-        map.put("og_number",number+"");
+        map.put("order_id", order.getOrder_id() + "");
+        map.put("good_id", goodLists.get(postion).getGood_id() + "");
+        map.put("og_number", number + "");
         String url = OkHttpClientManager.attachHttpGetParams(buffer.toString(), map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -220,28 +236,31 @@ public class GoodListActivity extends BaseActivity {
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     String body = object.getString("object");
-                    ordergoods = (OrderGoods) GsonUtils.getInstanceByJson(OrderGoods.class,body);
+                    ordergoods = (OrderGoods) GsonUtils.getInstanceByJson(OrderGoods.class, body);
                     Message message = new Message();
                     message.what = ConstantUtils.ORDERGOODS_CREATE_GET_DATA;
                     message.obj = postion;
                     handler.sendMessage(message);
                 } else {
-                    showToast("用户名或密码错误！");
+                    BaiduLoading.onStopDialog();
                 }
             }
         });
     }
-    /**创建订单*/
+
+    /**
+     * 创建订单
+     */
     private void doCreateOrder() {
         OkHttpClientManager manager = OkHttpClientManager.getInstance();
         StringBuffer buffer = new StringBuffer(ConstantUtils.USER_ADDRESS).append(ConstantUtils.ORDER_REGISTER);
         Map<String, String> map = new HashMap<>();
         map.put("type", "addOrder");
-        map.put("business_id", business.getBusiness_id()+"");
-        map.put("user_id", userInfo.getUser_id()+"");
+        map.put("business_id", business.getBusiness_id() + "");
+        map.put("user_id", userInfo.getUser_id() + "");
         map.put("o_pay", "0");
         map.put("o_remarks", "未评价");
-        map.put("o_creattime", System.currentTimeMillis()+"");
+        map.put("o_creattime", System.currentTimeMillis() + "");
         String url = OkHttpClientManager.attachHttpGetParams(buffer.toString(), map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -256,19 +275,22 @@ public class GoodListActivity extends BaseActivity {
                 String flag = object.getString("error");
                 if (flag.equals("ok")) {
                     String body = object.getString("object");
-                    order = (Order) GsonUtils.getInstanceByJson(Order.class,body);
+                    order = (Order) GsonUtils.getInstanceByJson(Order.class, body);
                     handler.sendEmptyMessage(ConstantUtils.ORDER_CREATE_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+                    BaiduLoading.onStopDialog();
                 }
             }
         });
     }
 
-    /**获取订单详情*/
-    private void getOrderGoodsList(){
+    /**
+     * 获取订单详情
+     */
+    private void getOrderGoodsList() {
 
     }
+
     class GoodListHandler extends Handler {
         private int postion;
 
@@ -277,26 +299,24 @@ public class GoodListActivity extends BaseActivity {
             super.handleMessage(msg);
             switch (msg.what) {
                 case ConstantUtils.GOOD_GET_ALL_DATA:
-
                     numberList = new ArrayList<>();
                     flagList = new ArrayList<>();
-                    for (int i = 0 ; i <goodLists.size();i++){
+                    for (int i = 0; i < goodLists.size(); i++) {
                         numberList.add(0);
                     }
-                    for (int i = 0 ; i <goodLists.size();i++){
+                    for (int i = 0; i < goodLists.size(); i++) {
                         flagList.add(true);
                     }
                     updataList();
                     doCreateOrder();
                     break;
                 case ConstantUtils.ORDER_CREATE_GET_DATA:
-                    showToast("订单创建成功！可以加入购物车了！");
                     BaiduLoading.onStopDialog();
                     break;
                 case ConstantUtils.ORDERGOODS_CREATE_GET_DATA:
                     showToast("加入购物车成功");
                     this.postion = (int) msg.obj;
-                    flagList.set(postion,false);
+                    flagList.set(postion, false);
                     adapter.notifyDataSetChanged();
                     BaiduLoading.onStopDialog();
                     jishuan();
@@ -313,15 +333,15 @@ public class GoodListActivity extends BaseActivity {
     private void jishuan() {
         int allPice = 0;
         int allNum = 0;
-        for (int i = 0 ; i < goodLists.size(); i++){
-            if (flagList.get(i)==false){
+        for (int i = 0; i < goodLists.size(); i++) {
+            if (flagList.get(i) == false) {
                 int number = numberList.get(i);
-                allNum+=number;
-                allPice=allPice+number *goodLists.get(i).getG_price();
+                allNum += number;
+                allPice = allPice + number * goodLists.get(i).getG_price();
             }
         }
-        tv_total.setText("合计："+allPice+"元");
-        tv_count.setText("去结算（"+allNum+"）");
+        tv_total.setText("合计：" + allPice + "元");
+        tv_count.setText("提交订单（" + allNum + "）");
     }
 
     public static void actionStart(Context context, Business business) {

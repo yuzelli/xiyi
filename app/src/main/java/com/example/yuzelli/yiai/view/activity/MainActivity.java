@@ -3,11 +3,13 @@ package com.example.yuzelli.yiai.view.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentTabHost;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TabHost;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.yuzelli.yiai.R;
 import com.example.yuzelli.yiai.base.BaseActivity;
@@ -70,6 +72,22 @@ public class MainActivity extends BaseActivity {
 
         return view;
     }
+long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
 
     public static void actionStart(Context context){
         Intent intent = new Intent(context,MainActivity.class);

@@ -104,7 +104,7 @@ public class RemarksActivity extends BaseActivity {
                     String body = object.getString("object");
                     handler.sendEmptyMessage(ConstantUtils.GOOD_PAY_GOOD_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+                    BaiduLoading.onStopDialog();
                 }
             }
         });
@@ -132,7 +132,7 @@ public class RemarksActivity extends BaseActivity {
                     goodLists = GsonUtils.jsonToArrayList(body,OrderGoodsSettlement.class);
                     handler.sendEmptyMessage(ConstantUtils.SETTLEMENT_GOOD_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+
                 }
             }
         });

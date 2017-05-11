@@ -3,6 +3,7 @@
     android:layout_width="350dp"
     android:layout_height="wrap_content"
     android:focusable="true"
+    android:padding="10dp"
     android:background="@drawable/bg_popup_order_shape_10">
 
     <RelativeLayout
@@ -37,7 +38,7 @@
     <RelativeLayout
         android:id="@+id/rl_time_search"
         android:layout_width="match_parent"
-        android:layout_height="85dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/rl_head">
         <TextView
             android:id="@+id/tv_begin_time_title"

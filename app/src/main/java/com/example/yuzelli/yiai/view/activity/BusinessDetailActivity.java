@@ -134,7 +134,7 @@ public class BusinessDetailActivity extends BaseActivity {
                     orderLists = GsonUtils.jsonToArrayList(body,Order.class);
                     handler.sendEmptyMessage(22);
                 } else {
-                    showToast("用户名或密码错误！");
+                    BaiduLoading.onStopDialog();
                 }
             }
         });

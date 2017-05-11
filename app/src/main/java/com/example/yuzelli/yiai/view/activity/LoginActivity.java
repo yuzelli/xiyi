@@ -131,6 +131,7 @@ public class LoginActivity extends BaseActivity {
                     handler.sendEmptyMessage(ConstantUtils.LOGIN_GET_DATA);
                 } else {
                     showToast("用户名或密码错误！");
+
                 }
             }
         });

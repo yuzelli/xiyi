@@ -133,7 +133,7 @@ public class SettlementActivity extends BaseActivity {
                     String body = object.getString("object");
                     handler.sendEmptyMessage(ConstantUtils.GOOD_PAY_GOOD_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+                    BaiduLoading.onStopDialog();
                 }
             }
         });
@@ -161,7 +161,7 @@ public class SettlementActivity extends BaseActivity {
                     goodsList = GsonUtils.jsonToArrayList(body,OrderGoodsSettlement.class);
                     handler.sendEmptyMessage(ConstantUtils.SETTLEMENT_GOOD_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+
                 }
             }
         });
@@ -253,7 +253,7 @@ public class SettlementActivity extends BaseActivity {
 
                     handler.sendEmptyMessage(ConstantUtils.TIMELIST_ADD_GOOD_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+
                 }
             }
         });

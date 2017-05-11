@@ -80,7 +80,7 @@ public class OrderFragment extends BaseFragment {
                     orderList = GsonUtils.jsonToArrayList(body, Order.class);
                     handler.sendEmptyMessage(ConstantUtils.USER_ORDER_GOOD_GET_DATA);
                 } else {
-                    showToast("用户名或密码错误！");
+                    BaiduLoading.onStopDialog();
                 }
             }
         });
@@ -102,6 +102,7 @@ public class OrderFragment extends BaseFragment {
     }
 
     private void updataList() {
+
         lv_goods.setAdapter(new CommonAdapter<Order>(getActivity(), orderList, R.layout.cell_user_order) {
             @Override
             public void convert(ViewHolder helper, Order item, int position) {

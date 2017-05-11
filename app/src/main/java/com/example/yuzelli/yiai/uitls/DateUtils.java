@@ -2,17 +2,22 @@ package com.example.yuzelli.yiai.uitls;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 
 public class DateUtils {
-
+    public static String converTime(Long time) {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy年MM月dd日 HH:mm:ss");
+        Date curDate = new Date(time);//获取当前时间
+        String str = formatter.format(curDate);
+        return str;
+    }
     /**
      * 转化时间输入时间与当前时间的间隔
-     *
      * @param timestamp
      * @return
      */
-    public static String converTime(long timestamp) {
+    public static String converTime2(long timestamp) {
         long currentSeconds = System.currentTimeMillis() / 1000;
         long timeGap = currentSeconds - timestamp/1000;// 与现在时间相差秒数
         String timeStr = null;

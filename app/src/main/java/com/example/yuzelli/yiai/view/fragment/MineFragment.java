@@ -341,7 +341,7 @@ public class MineFragment extends BaseFragment {
                                 LxQiniuUploadUtils.uploadPic("yuzelloroom", photoPath, StouserHeadImgName, new LxQiniuUploadUtils.UploadCallBack() {
                                     @Override
                                     public void sucess(String url) {
-                                        Toast.makeText(context, url, Toast.LENGTH_SHORT).show();
+
                                         userHeadImgUrl = ConstantUtils.QN_IMG_ADDRESS + StouserHeadImgName;
                                         BaiduLoading.onStopDialog();
                                     }
