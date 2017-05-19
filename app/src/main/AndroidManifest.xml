@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.yuzelli.yiai">
+
+    <!-- 摄像机权限 -->
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <!-- 在SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 往SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!-- 网络授权 -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- 允许联网 -->
+
+
+    <!-- 获取GSM（2g）、WCDMA（联通3g）等网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- 获取wifi网络状态的信息 -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <!-- 保持CPU 运转，屏幕和键盘灯有可能是关闭的,用于文件上传和下载 -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- 允许读取手机状态 用于创建BmobInstallation -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+
+    <application
+        android:name=".app.BaseApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_app"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.MainActivity" />
+        <activity android:name=".view.activity.LoginActivity" />
+        <activity android:name=".view.activity.RegisterActivity" />
+        <activity android:name=".view.activity.GuideActivity" />
+        <activity android:name=".view.activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        >
+        <activity android:name=".view.activity.BusinessDetailActivity" />
+        <activity android:name=".view.activity.SelectActivity" />
+        <activity android:name=".view.activity.GoodListActivity" />
+        <activity android:name=".view.activity.SettlementActivity" />
+        <activity android:name=".view.activity.RemarksActivity"></activity>
+    </application>
+
+</manifest>

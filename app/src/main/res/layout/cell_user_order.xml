@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+android:orientation="vertical"
+    android:background="#cdcdcd"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="时间："
+            android:textColor="@color/black"
+            android:textSize="20sp" >
+
+        </TextView>
+        <TextView
+            android:id="@+id/tv_stata"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="支付"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:padding="10dp">
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="时间："
+            android:textColor="@color/black"
+            android:textSize="20sp" >
+
+        </TextView>
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:text="支付"
+            android:layout_alignParentRight="true"
+            android:textColor="@color/black"
+            android:textSize="20sp"/>
+    </RelativeLayout>
+
+
+
+</LinearLayout>

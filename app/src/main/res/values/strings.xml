@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">YIAI</string>
+    <string name="immediately_enter">立即使用</string>
+    <string name="welcome">欢迎回到衣艾</string>
+    <string name="img_description">图片</string>
+    <string name="head_pic">头像</string>
+    <string name="user_name">用户名</string>
+    <string name="phone_number">手机号</string>
+    <string name="address">地址</string>
+    <string name="technology">热衷技术</string>
+    <string name="person_introduce">个人简介</string>
+    <string name="cancel">取消</string>
+    <string name="take_photo">拍照</string>
+    <string name="photo_album">从相册选择</string>
+</resources>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="毛衣"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="100"
+        android:layout_alignParentRight="true"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="数量："
+            android:layout_alignParentRight="true"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/shop_car_item_min_spec"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/shopping_cart_edit_choose_min_btn"
+            android:textColor="#000" />
+
+        <EditText
+            android:id="@+id/shop_car_item_editNum_spec"
+            android:layout_width="60dp"
+            android:layout_height="35dp"
+            android:background="@drawable/shopping_cart_edit_choose_num_bg"
+            android:clickable="false"
+            android:cursorVisible="false"
+            android:gravity="center"
+            android:numeric="integer"
+            android:padding="3dp"
+            android:singleLine="true"
+            android:text="0" />
+
+        <ImageView
+            android:id="@+id/shop_car_item_sum_spec"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@drawable/shopping_cart_edit_choose_sum_btn" />
+
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/tv_add"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
+        android:text="加入购物车"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:padding="3dp"
+        android:gravity="center"
+        android:background="@drawable/view_shape"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>

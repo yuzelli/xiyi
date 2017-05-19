@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_settlement"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yuzelli.yiai.view.activity.SettlementActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/mainblue">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_left" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="订单结算"
+            android:textColor="#ffffff"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/lv_goods"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rl_back"
+        android:layout_below="@+id/rl_head">
+
+    </ListView>
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+       android:layout_centerVertical="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/view_shape"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="衣服送回时间段"
+            android:textColor="@color/black"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/img_add"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_add" />
+
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/lv_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_pay"
+        android:layout_below="@+id/rl_back" />
+
+    <TextView
+        android:id="@+id/tv_pay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/view_shape"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="支付30元"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+
+</RelativeLayout>

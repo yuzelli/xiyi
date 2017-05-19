@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    android:background="@drawable/view_shape"
+   >
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:text="请输入"/>
+    <EditText
+        android:id="@+id/et_input"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_title"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:textSize="16sp"
+        android:hint="请输入"
+        />
+    <TextView
+        android:id="@+id/tv_ok"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/et_input"
+        android:gravity="center"
+        android:layout_toLeftOf="@+id/tv_cancel"
+        android:text="确定"/>
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/et_input"
+
+        android:layout_alignParentRight="true"
+        android:gravity="center"
+        android:text="取消"/>
+
+
+</RelativeLayout>

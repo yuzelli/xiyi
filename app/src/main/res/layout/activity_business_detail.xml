@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_business_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yuzelli.yiai.view.activity.BusinessDetailActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_head"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/mainblue">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_left" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:text="商家详情"
+            android:textSize="25sp" />
+
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/img_business"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_below="@+id/rl_head"
+        android:src="@drawable/splash15"
+        android:scaleType="fitXY" />
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/img_business"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:layout_marginTop="10dp"
+        android:text="sssssss"
+        android:textColor="@color/black"/>
+    <TextView
+        android:id="@+id/tv_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_name"
+        android:layout_marginStart="15dp"
+        android:text="贝斯手"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_phone"
+        android:text="贝斯手"
+        android:lines="1"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="15dp"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_notice"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:singleLine="true"
+        android:scrollHorizontally="true"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="true"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:text="ssssssssssssssss"
+        android:layout_below="@+id/tv_address"
+        android:focusableInTouchMode="true"
+       />
+
+    <ListView
+        android:id="@+id/lv_comment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_notice">
+
+    </ListView>
+
+</RelativeLayout>
