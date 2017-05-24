@@ -38,8 +38,8 @@ public class ConstantUtils
     //登录用户信息
     public static final String USER_LOGIN_INFO = "UserInfo";
     //自己的后台
-    public static final String USER_ADDRESS = "http://192.168.1.110:8080/YIAIService/";
-   // public static final String USER_ADDRESS = "http://10.89.35.3:8080/YIAIService/";
+   //public static final String USER_ADDRESS = "http://192.168.0.102:8080/YIAIService/";
+   public static final String USER_ADDRESS = "http://10.89.35.3:8080/YIAIService/";
     //用户操作
     public static final String USER_REGISTER = "UserInfoServlet";
     public static final String BUSINESS_REGISTER = "BuninessServlet";

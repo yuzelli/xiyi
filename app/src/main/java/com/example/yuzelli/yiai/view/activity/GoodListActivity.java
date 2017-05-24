@@ -53,7 +53,7 @@ public class GoodListActivity extends BaseActivity {
     private Order order;
     private OrderGoods ordergoods;
     private Context context;
-    private boolean flag = false;
+    private boolean orderflag = false;
 
     List<Integer> numberList;
     List<Boolean> flagList;
@@ -108,7 +108,7 @@ public class GoodListActivity extends BaseActivity {
                         allPice = allPice + number * goodLists.get(i).getG_price();
                     }
                 }
-                flag = true;
+                orderflag = true;
                 SettlementActivity.actionStart(context, order, allPice);
                 finish();
 
@@ -119,7 +119,7 @@ public class GoodListActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-         if (!flag){
+         if (!orderflag){
              doDeletOrder();
          }
     }
