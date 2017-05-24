@@ -132,6 +132,7 @@ public class BusinessDetailActivity extends BaseActivity {
                 if (flag.equals("ok")) {
                     String body = object.getString("object");
                     orderLists = GsonUtils.jsonToArrayList(body,Order.class);
+
                     handler.sendEmptyMessage(22);
                 } else {
                     BaiduLoading.onStopDialog();

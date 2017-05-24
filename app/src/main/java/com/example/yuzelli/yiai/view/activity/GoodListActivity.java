@@ -53,6 +53,7 @@ public class GoodListActivity extends BaseActivity {
     private Order order;
     private OrderGoods ordergoods;
     private Context context;
+    private boolean flag = false;
 
     List<Integer> numberList;
     List<Boolean> flagList;
@@ -107,9 +108,45 @@ public class GoodListActivity extends BaseActivity {
                         allPice = allPice + number * goodLists.get(i).getG_price();
                     }
                 }
+                flag = true;
                 SettlementActivity.actionStart(context, order, allPice);
                 finish();
 
+            }
+        });
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+         if (!flag){
+             doDeletOrder();
+         }
+    }
+
+    private void doDeletOrder() {
+        BaiduLoading.onBeiginDialog(this);
+        OkHttpClientManager manager = OkHttpClientManager.getInstance();
+        StringBuffer buffer = new StringBuffer(ConstantUtils.USER_ADDRESS).append(ConstantUtils.ORDER_REGISTER);
+        Map<String, String> map = new HashMap<>();
+        map.put("type", "deletOrder");
+        map.put("order_id", order.getOrder_id() + "");
+        String url = OkHttpClientManager.attachHttpGetParams(buffer.toString(), map);
+        manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
+            @Override
+            public void requestFailure(Request request, IOException e) {
+                showToast("加载网路数据失败！");
+            }
+
+            @Override
+            public void requestSuccess(String result) throws Exception {
+                JSONObject object = new JSONObject(result);
+                String flag = object.getString("error");
+                if (flag.equals("ok")) {
+
+                } else {
+                    showToast("用户名或密码错误！");
+                }
             }
         });
     }

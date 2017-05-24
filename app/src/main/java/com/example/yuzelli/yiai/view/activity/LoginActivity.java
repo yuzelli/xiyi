@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -136,6 +137,21 @@ public class LoginActivity extends BaseActivity {
             }
         });
     }
+    long exitTime = 0;
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN){
+            if((System.currentTimeMillis()-exitTime) > 2000){
+                Toast.makeText(this,"再按一次退出程序",Toast.LENGTH_SHORT).show();
+                exitTime = System.currentTimeMillis();
+            } else {
+                finish();
+                System.exit(0);
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
     public static void actionStart(Context context){
         Intent intent = new Intent(context,LoginActivity.class);
         context.startActivity(intent);
@@ -148,6 +164,7 @@ public class LoginActivity extends BaseActivity {
                 case ConstantUtils.LOGIN_GET_DATA:
                     SharePreferencesUtil.saveObject(context, ConstantUtils.USER_LOGIN_INFO, userInfo);
                     MainActivity.actionStart(context);
+                    finish();
                     break;
                 default:
                     break;

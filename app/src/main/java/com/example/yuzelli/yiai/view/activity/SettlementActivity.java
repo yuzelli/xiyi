@@ -237,7 +237,7 @@ public class SettlementActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("type", "addTime");
         map.put("order_id", order.getOrder_id() + "");
-        map.put("t_content", begin+"\n"+end);
+        map.put("t_content", begin+"—"+end);
         String url = OkHttpClientManager.attachHttpGetParams(buffer.toString(), map);
         manager.getAsync(url, new OkHttpClientManager.DataCallBack() {
             @Override
@@ -323,7 +323,8 @@ public class SettlementActivity extends BaseActivity {
         lv_time.setAdapter(new CommonAdapter<TimeBean>(this,timesList,R.layout.cell_time_time) {
             @Override
             public void convert(ViewHolder helper, TimeBean item, int position) {
-                helper.setText(R.id.tv_content,item.getT_content());
+                String c = item.getT_content();
+                helper.setText(R.id.tv_content,c);
             }
         });
     }
